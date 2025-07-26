@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Local configuration ###
-.env
+**/secrets.*
