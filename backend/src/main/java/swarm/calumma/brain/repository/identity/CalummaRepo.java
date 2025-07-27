@@ -1,6 +1,7 @@
-package swarm.calumma.brain.model.identity;
+package swarm.calumma.brain.repository.identity;
 
 import org.springframework.data.repository.CrudRepository;
+import swarm.calumma.brain.model.identity.Calumma;
 
 import java.util.Set;
 

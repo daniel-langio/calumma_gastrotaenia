@@ -3,10 +3,9 @@ package swarm.calumma.brain.service.identity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import swarm.calumma.brain.model.identity.Calumma;
-import swarm.calumma.brain.model.identity.CalummaRepo;
+import swarm.calumma.brain.repository.identity.CalummaRepo;
 import swarm.calumma.brain.service.file.RessourceFileService;
 
-import java.util.Arrays;
 import java.util.Set;
 
 @Service
