@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import swarm.calumma.brain.model.identity.host.HostNetworkInterface;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,10 +28,22 @@ public class Host {
     @Version
     private Long version = 0L;
 
+    public Host(String name, boolean isSelf) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.networkInterfaces = new HashSet<>();
+        this.isSelf = isSelf;
+    }
+
     public Host(String name, Set<HostNetworkInterface> networkInterfaces, boolean isSelf) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.networkInterfaces = networkInterfaces;
         this.isSelf = isSelf;
+    }
+
+    public void addNetworkInterface(HostNetworkInterface networkInterface) {
+        this.networkInterfaces.add(networkInterface);
+        networkInterface.setHost(this);
     }
 }

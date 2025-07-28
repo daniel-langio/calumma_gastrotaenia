@@ -28,4 +28,8 @@ public class HostNetworkInterface {
     this.name = name;
     this.displayName = displayName;
   }
+
+  public void setHost(Host host) {
+    this.host = host;
+  }
 }
