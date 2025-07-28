@@ -5,14 +5,20 @@ import swarm.calumma.brain.model.identity.host.HostNetworkInterface;
 import swarm.calumma.brain.service.identity.exception.InterfaceNotFoundException;
 import swarm.calumma.brain.service.identity.exception.MacAddressNotFound;
 
+import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class HostService {
+  public String getHostName() throws UnknownHostException {
+    return InetAddress.getLocalHost().getHostName();
+  }
+
   public Set<HostNetworkInterface> getHostInterfaces() throws SocketException {
     HashSet<HostNetworkInterface> hostInterfaces = new HashSet<HostNetworkInterface>();
     Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
@@ -24,7 +30,7 @@ public class HostService {
       String displayName = netInterface.getDisplayName();
       String macAddr = getHostMacAddress(name);
       hostInterfaces.add(
-          new HostNetworkInterface(name, displayName, macAddr)
+          new HostNetworkInterface(macAddr, name, displayName)
       );
     }
 
@@ -44,7 +50,8 @@ public class HostService {
 
     byte[] mac = net.getHardwareAddress();
     if (mac == null) {
-      throw new MacAddressNotFound("MAC Address of '" + targetInterface + "' not found.");
+      //throw new MacAddressNotFound("MAC Address of '" + targetInterface + "' not found.");
+      return null;
     }
 
     StringBuilder macStr = new StringBuilder();

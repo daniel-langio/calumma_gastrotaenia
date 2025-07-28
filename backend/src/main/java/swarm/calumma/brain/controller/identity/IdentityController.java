@@ -25,4 +25,13 @@ public class IdentityController {
       return ResponseEntity.internalServerError().body(new SimpleResponseDTO("Something went wrong: " + e.getMessage()));
     }
   }
+
+  @GetMapping("/host")
+  public ResponseEntity<?> getHost() {
+    try {
+      return ResponseEntity.ok(calummaService.getHost());
+    } catch (Exception e) {
+      return ResponseEntity.internalServerError().body(new SimpleResponseDTO("Something went wrong: " + e.getMessage()));
+    }
+  }
 }
